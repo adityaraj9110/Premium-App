@@ -43,7 +43,7 @@ const Register = () => {
         timer: 1000,
     });
      setTimeout(()=>{
-        navigate("/login");
+        navigate("/");
      },1500)
     } catch (error) {
         swal({
@@ -100,7 +100,7 @@ const Register = () => {
             />
           </div>
           <p className="bottom-para">
-            Already a user? <a href="/login">Sign In</a>
+            Already a user? <a href="/">Sign In</a>
           </p>
         </form>
       </div>

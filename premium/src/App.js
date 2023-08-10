@@ -16,7 +16,7 @@ const App = () => {
     if (storedId) {
       setUserId(storedId);
     }
-    else if(storedId==null || storedId == undefined){
+    else if(storedId==null || storedId === undefined){
       setUserId(null);
     }
   }, [storedId]);
@@ -24,7 +24,7 @@ const App = () => {
     if (storedUser) {
       setUserName(storedUser);
     }
-    else if(storedId==null || storedId == undefined){
+    else if(storedId==null || storedId === undefined){
       setUserName(null);
     }
   }, [storedUser]);
@@ -35,7 +35,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={storedId!=null?<Home/> :<Login/>} />
           <Route path='/premium' element={storedId!=null?<Plans />:<Login/>} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path="*" element={<h1>Error 404 page not found</h1>} />
         </Routes>
