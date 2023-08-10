@@ -21,10 +21,7 @@ app.use(cookieParser())
 
 
 app.use(
-  cors({
-    origin: "https://premiumaplha.netlify.app",
-    credentials: true, 
-  })
+  cors()
 );
 
 // routes 
