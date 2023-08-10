@@ -17,7 +17,9 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
-  input[type="submit"] {
+  .btn {
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
     cursor: pointer;
     font-size: 15px;
@@ -28,7 +30,7 @@
     width: 18vw;
   }
   
-  input[type="submit"]:hover {
+  .btn:hover {
     background: #39489d;
   }
   
@@ -91,15 +93,24 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+  .button-container {
+    text-align: center;
+  }
   
+  .spinner {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px; /* Adjust as needed */
+  }
+   
   @media only screen and (max-width: 900px){
     .login-form{
       top: 15%;
-      left: 200%;
-      height: 40vh;
-      width: 42vw;
+      left: 25%;
+      height: 50vh;
+      width: 45vw;
     }
-    input[type="submit"] {
+    .btn {
       margin-top: 10px;
       padding: 10px 20px;
       border-radius: 5px;
@@ -114,7 +125,7 @@
       height: 46vh;
       width: 72vw;
     }
-    input[type="submit"] {
+    .btn {
       margin-top: 10px;
       padding: 10px 20px;
       border-radius: 5px;

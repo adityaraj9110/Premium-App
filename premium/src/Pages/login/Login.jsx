@@ -3,9 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/AuthContext";
 import swal from "sweetalert";
+import { TailSpin } from "react-loader-spinner";
 import "./login.css";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     password: "",
     email: "",
@@ -23,32 +25,43 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        "https://premium-app-vha0.onrender.com/api/user/login",
-        user
-      );
-      localStorage.setItem("userId", res.data.user._id);
-      localStorage.setItem("username", res.data.user.username);
-      // console.log(res.data)
-      setUserId(res.data.user._id);
-      setUserName(res.data.user.username);
+    if (user.password.trim() === "" || user.email.trim() === "") {
       swal({
-        title: "Login Succesfully",
-        icon: "success",
-        buttons: false,
-        timer: 1000,
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
-    } catch (error) {
-      swal({
-        title: "Email or password is invalid!",
+        title: "Fill all the given filled",
         icon: "error",
         buttons: false,
-        timer: 2000,
+        timer: 3000,
       });
+    } else {
+      setLoading(true);
+      try {
+        const res = await axios.post(
+          "https://premium-app-vha0.onrender.com/api/user/login",
+          user
+        );
+        localStorage.setItem("userId", res.data.user._id);
+        localStorage.setItem("username", res.data.user.username);
+        // console.log(res.data)
+        setUserId(res.data.user._id);
+        setUserName(res.data.user.username);
+        setLoading(false);
+        swal({
+          title: "Login Succesfully",
+          icon: "success",
+          buttons: false,
+          timer: 1000,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      } catch (error) {
+        swal({
+          title: "Email or password is invalid!",
+          icon: "error",
+          buttons: false,
+          timer: 2000,
+        });
+      }
     }
   };
   return (
@@ -68,10 +81,10 @@ const Login = () => {
           <div className="input-container">
             <label>Password </label>
             <input
+              required
               type="password"
               name="password"
               onChange={(e) => handleChange(e)}
-              required
             />
           </div>
           <div className="check-box">
@@ -79,15 +92,18 @@ const Login = () => {
             <label for="rememberMe">Remember me</label>
           </div>
           <div className="button-container">
-            <input
+            <button
+              className="btn"
               onClick={(e) => {
                 handleLogin(e);
               }}
               type="submit"
-            />
+            >
+              {loading ? <TailSpin  height={25} color="white" /> : "Login"}
+            </button>
           </div>
           <p className="bottom-para">
-            New to MyApp? <a href="/">Sign Up</a>
+            New to MyApp? <a href="/register">Sign Up</a>
           </p>
         </form>
       </div>

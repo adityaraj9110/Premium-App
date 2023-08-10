@@ -3,9 +3,11 @@ import axios from "axios";
 import { useAuth } from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { TailSpin } from "react-loader-spinner";
 import "./register.css"
 const Register = () => {
   const { setUserId, setUserName } = useAuth();
+  const [loading,setLoading] = useState(false);
   const [info, setInfo] = useState({
     username: "",
     email: "",
@@ -24,6 +26,16 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (info.password.trim() === "" || info.email.trim() === "" ||info.username.trim()==="") {
+      swal({
+        title: "Fill all the given filled",
+        icon: "error",
+        buttons: false,
+        timer: 3000,
+      });
+    }else{
+
+    loading(true)
     try {
       const res = await axios.post(
         "https://premium-app-vha0.onrender.com/api/user/register",
@@ -36,6 +48,7 @@ const Register = () => {
 
       setUserId(user._id);
       setUserName(user.name);
+      loading(false)
       swal({
         title: "Registered Succesfully",
         icon: "success",
@@ -53,6 +66,7 @@ const Register = () => {
             timer: 2000,
         });
     }
+  }
   };
 
   return (
@@ -92,15 +106,19 @@ const Register = () => {
             <label for="rememberMe">Remember me</label>
           </div>
           <div className="button-container">
-            <input
+            
+          <button
+              className="btn"
               onClick={(e) => {
                 handleSubmit(e);
               }}
               type="submit"
-            />
+            >
+              {loading ? <TailSpin  height={25} color="white" /> : "Register"}
+            </button>
           </div>
           <p className="bottom-para">
-            Already a user? <a href="/">Sign In</a>
+            Already a user? <a href="/login">Sign In</a>
           </p>
         </form>
       </div>
