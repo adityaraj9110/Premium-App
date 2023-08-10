@@ -55,6 +55,7 @@ const Login = () => {
           navigate("/");
         }, 1500);
       } catch (error) {
+        setLoading(false);
         swal({
           title: "Email or password is invalid!",
           icon: "error",
@@ -103,7 +104,7 @@ const Login = () => {
             </button>
           </div>
           <p className="bottom-para">
-            New to MyApp? <a href="/register">Sign Up</a>
+              New to MyApp? <a href="/register">Sign Up</a>
           </p>
         </form>
       </div>

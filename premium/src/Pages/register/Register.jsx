@@ -35,7 +35,7 @@ const Register = () => {
       });
     }else{
 
-    loading(true)
+    setLoading(true)
     try {
       const res = await axios.post(
         "https://premium-app-vha0.onrender.com/api/user/register",
@@ -48,7 +48,7 @@ const Register = () => {
 
       setUserId(user._id);
       setUserName(user.name);
-      loading(false)
+      setLoading(false)
       swal({
         title: "Registered Succesfully",
         icon: "success",
@@ -59,6 +59,7 @@ const Register = () => {
         navigate("/");
      },1500)
     } catch (error) {
+      setLoading(false);
         swal({
             title: "Wrong Credentials",
             icon: "false",

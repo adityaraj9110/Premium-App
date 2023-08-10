@@ -29,10 +29,10 @@ const App = () => {
     <BrowserRouter>
       <>
         <Routes>
-          <Route path="/" element={storedId!=null ? <Home/> : <Navigate to="/login" replace/>}/>
+          <Route path="/" element={storedId!=null ? <Home/> : <Navigate to="/login"/>}/>
           <Route
             path="/premium"
-            element={storedId!=null ? <Plans/> : <Navigate to="/login" replace/>}
+            element={storedId!=null ? <Plans/> : <Navigate to="/login"/>}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
