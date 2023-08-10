@@ -26,7 +26,7 @@ const Plans = () => {
     const newData = {...pro,userId:userId}
     console.log(newData)
      try {
-      const res = await axios.post("https://premium-app-vha0.onrender.com/subscribe",{newData,token});
+      const res = await axios.post("https://premium-app-vha0.onrender.com/api/user/subscribe",{newData,token});
       swal({
         title: "Payment Succesfully Done!",
         icon: "success",

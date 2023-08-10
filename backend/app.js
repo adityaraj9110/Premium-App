@@ -25,7 +25,7 @@ app.use(
 );
 
 // routes 
-app.use("https://premium-app-vha0.onrender.com",userRouter)
+app.use("/api/user",userRouter)
 
 app.use(errorMiddleWare)
 app.listen(4000, () => {

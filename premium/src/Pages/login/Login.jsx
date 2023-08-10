@@ -24,7 +24,7 @@ const Login = () => {
     const handleLogin = async(e)=>{
         e.preventDefault();
         try {
-            const res = await axios.post("https://premium-app-vha0.onrender.com/login",user);
+            const res = await axios.post("https://premium-app-vha0.onrender.com/api/user/login",user);
             localStorage.setItem('userId', res.data.user._id);
             localStorage.setItem('username', res.data.user.username);
             // console.log(res.data)

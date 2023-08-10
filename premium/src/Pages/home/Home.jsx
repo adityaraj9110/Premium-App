@@ -24,7 +24,7 @@ const Home = () => {
       setLoading(true);
       try {
         const res = await axios.post(
-          "https://premium-app-vha0.onrender.com/findById",
+          "https://premium-app-vha0.onrender.com/api/user/findById",
           { id }
         );
         setData(res.data.data.plans);
