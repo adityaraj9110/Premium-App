@@ -26,7 +26,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/user/register",
+        "https://premium-app-vha0.onrender.com/register",
         info
       );
       const { user } = res.data;
